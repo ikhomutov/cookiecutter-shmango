@@ -1,0 +1,3 @@
+release: python manage.py migrate --noinput
+web: gunicorn {{ cookiecutter.project_slug }}.wsgi:application
+worker: celery worker -A {{ cookiecutter.project_slug }}.celery -l info -E

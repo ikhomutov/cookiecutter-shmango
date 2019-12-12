@@ -1,0 +1,8 @@
+{
+    "repo_slug": "Name of the root directory",
+    "project_name": "Name of the project",
+    "project_slug": "Name of the project directory",
+    "author_name": "Ivan Khomutov",
+    "author_email": "ikhomutov@protonmail.com",
+    "project_short_description": "A short description of the project"
+}

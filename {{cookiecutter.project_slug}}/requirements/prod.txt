@@ -1,0 +1,4 @@
+-r ./base.txt
+
+gunicorn==19.9.0  # https://github.com/benoitc/gunicorn
+sentry-sdk==0.13.0  # https://github.com/getsentry/sentry-python
