@@ -14,6 +14,9 @@ services:
     depends_on:
       - postgres
       - redis
+{%- if cookiecutter.cache_backend == 'memcached' %}
+      - memcached
+{%- endif %}
     env_file:
       - compose.env.example
 
@@ -25,6 +28,9 @@ services:
     command: celery worker -A {{ cookiecutter.project_slug }}.celery --uid nobody -E --loglevel INFO
     depends_on:
       - redis
+{%- if cookiecutter.cache_backend == 'memcached' %}
+      - memcached
+{%- endif %}
     env_file:
       - compose.env.example
 
@@ -36,6 +42,9 @@ services:
     command: celery beat -A {{ cookiecutter.project_slug }}.celery --loglevel INFO
     depends_on:
       - redis
+{%- if cookiecutter.cache_backend == 'memcached' %}
+      - memcached
+{%- endif %}
     env_file:
       - compose.env.example
 
@@ -48,3 +57,12 @@ services:
 
   redis:
     image: redis:5.0
+
+{%- if cookiecutter.cache_backend == 'memcached' %}
+
+  memcached:
+    image: memcached
+    entrypoint:
+      - memcached
+      - -m 64
+{%- endif %}

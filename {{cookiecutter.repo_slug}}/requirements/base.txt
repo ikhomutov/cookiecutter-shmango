@@ -1,6 +1,5 @@
 django==2.2.5  # https://github.com/django/django
 django-environ==0.4.5  # https://github.com/joke2k/django-environ
-django-redis==4.10.0  # https://github.com/niwinz/django-redis
 djangorestframework==3.10.3  # https://github.com/encode/django-rest-framework
 whitenoise==4.1.2  # https://github.com/evansd/whitenoise
 celery==4.3.0  # https://github.com/celery/celery

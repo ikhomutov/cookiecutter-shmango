@@ -8,6 +8,7 @@ from .base import env
 
 # CACHES
 # ------------------------------------------------------------------------------
+{%- if cookiecutter.cache_backend == 'redis' %}
 CACHES = {
     'default': {
         'BACKEND': 'django_redis.cache.RedisCache',
@@ -19,11 +20,28 @@ CACHES = {
     }
 }
 
+{% elif cookiecutter.cache_backend == 'memcached' %}
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': env('MEMCACHED_URL'),
+    }
+}
+
+{% elif cookiecutter.cache_backend == 'db' %}
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': env('DJANGO_CACHE_TABLE'),
+    }
+}
+
+{% endif -%}
+
 # SECURITY
 # ------------------------------------------------------------------------------
 SECURE_SSL_REDIRECT = env.bool('DJANGO_SECURE_SSL_REDIRECT', default=True)
 SESSION_COOKIE_SECURE = env.bool('DJANGO_SESSION_COOKIE_SECURE', default=True)
-
 
 # TEMPLATES
 # ------------------------------------------------------------------------------

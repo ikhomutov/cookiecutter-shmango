@@ -4,5 +4,10 @@
     "project_slug": "Name of the project directory",
     "author_name": "Ivan Khomutov",
     "author_email": "ikhomutov@protonmail.com",
-    "project_short_description": "A short description of the project"
+    "project_short_description": "A short description of the project",
+    "cache_backend": [
+        "redis",
+        "memcached",
+        "db"
+    ]
 }

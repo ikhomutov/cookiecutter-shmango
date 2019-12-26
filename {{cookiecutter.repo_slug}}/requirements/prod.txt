@@ -1,4 +1,9 @@
 -r ./base.txt
 
+{% if cookiecutter.cache_backend == 'redis' -%}
+django-redis==4.10.0  # https://github.com/niwinz/django-redis
+{% elif cookiecutter.cache_backend == 'memcached' -%}
+python-memcached  # https://github.com/linsomniac/python-memcached
+{% endif -%}
 gunicorn==19.9.0  # https://github.com/benoitc/gunicorn
 sentry-sdk==0.13.0  # https://github.com/getsentry/sentry-python
