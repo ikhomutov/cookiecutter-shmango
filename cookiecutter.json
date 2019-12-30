@@ -9,5 +9,6 @@
         "redis",
         "memcached",
         "db"
-    ]
+    ],
+    "use_sentry": "y"
 }

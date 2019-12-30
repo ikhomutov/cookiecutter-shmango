@@ -1,7 +1,9 @@
 import sentry_sdk
+{% if cookiecutter.use_sentry == 'y' -%}
 from sentry_sdk.integrations.celery import CeleryIntegration
 from sentry_sdk.integrations.django import DjangoIntegration
 from sentry_sdk.integrations.logging import LoggingIntegration
+{%- endif %}
 
 from .base import *  # noqa
 from .base import env
@@ -59,6 +61,7 @@ TEMPLATES[0]['OPTIONS']['loaders'] = [  # noqa F405
 # ------------------------------------------------------------------------------
 INSTALLED_APPS += ['gunicorn']  # noqa F405
 
+{% if cookiecutter.use_sentry == 'y' -%}
 # SENTRY
 # ------------------------------------------------------------------------------
 SENTRY_DSN = env.str('SENTRY_DSN', default='')
@@ -72,3 +75,4 @@ if SENTRY_DSN:
         ],
         environment=env.str('SENTRY_ENVIRONMENT'),
     )
+{% endif -%}

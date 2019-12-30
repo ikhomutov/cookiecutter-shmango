@@ -6,4 +6,6 @@ django-redis==4.10.0  # https://github.com/niwinz/django-redis
 python-memcached  # https://github.com/linsomniac/python-memcached
 {% endif -%}
 gunicorn==19.9.0  # https://github.com/benoitc/gunicorn
+{% if cookiecutter.use_sentry == 'y' -%}
 sentry-sdk==0.13.0  # https://github.com/getsentry/sentry-python
+{% endif -%}
