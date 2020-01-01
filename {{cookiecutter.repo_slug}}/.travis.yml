@@ -1,0 +1,12 @@
+services:
+  - postgresql
+language: python
+python:
+  - "3.7"
+install:
+  - pip install -r requirements/base.txt -r requirements/test.txt
+  - pip install coveralls
+script:
+  - pytest --cov {{ cookiecutter.project_slug }}/apps/
+after_success:
+  - coveralls

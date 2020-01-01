@@ -10,5 +10,9 @@
         "memcached",
         "db"
     ],
-    "use_sentry": "y"
+    "use_sentry": "y",
+    "ci_tool": [
+        "gitlab",
+        "travis"
+    ]
 }

@@ -32,7 +32,7 @@ pytest:
     - pip install -r requirements/base.txt -r requirements/test.txt
 
   script:
-    - pytest --cov {{ cookiecutter.project_slug }}/
+    - pytest --cov {{ cookiecutter.project_slug }}/apps/
 
 .build-docker-image:
   stage: build
