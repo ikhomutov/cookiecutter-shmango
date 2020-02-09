@@ -1,7 +1,7 @@
 {
-    "repo_slug": "Name of the root directory",
     "project_name": "Name of the project",
-    "project_slug": "Name of the project directory",
+    "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_')|replace('.', '_')|trim() }}",
+    "repo_slug": "{{ cookiecutter.project_slug }}-backend",
     "author_name": "Ivan Khomutov",
     "author_email": "ikhomutov@protonmail.com",
     "project_short_description": "A short description of the project",
@@ -10,8 +10,10 @@
         "memcached",
         "db"
     ],
+    "use_rest_framework": "y",
     "use_sentry": "y",
     "ci_tool": [
+        "none",
         "gitlab",
         "travis"
     ]

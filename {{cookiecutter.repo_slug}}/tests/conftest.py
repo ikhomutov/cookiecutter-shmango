@@ -2,13 +2,6 @@ import pytest
 
 
 @pytest.fixture()
-def api_client():
-    from rest_framework.test import APIClient
-
-    return APIClient()
-
-
-@pytest.fixture()
 def existed_user(db, django_user_model):
     User = django_user_model
     try:
@@ -21,6 +14,13 @@ def existed_user(db, django_user_model):
             password='password',
         )
     return user
+{% if cookiecutter.use_rest_framework == 'y' %}
+
+@pytest.fixture()
+def api_client():
+    from rest_framework.test import APIClient
+
+    return APIClient()
 
 
 @pytest.fixture()
@@ -31,3 +31,4 @@ def user_client(db, api_client, existed_user):
     token, _ = Token.objects.get_or_create(user=existed_user)
     api_client.credentials(HTTP_AUTHORIZATION='Token ' + token.key)
     return api_client
+{% endif -%}

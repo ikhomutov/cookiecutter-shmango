@@ -47,14 +47,18 @@ DJANGO_APPS = [
     'django.contrib.admin',
 ]
 THIRD_PARTY_APPS = [
+    {%- if cookiecutter.use_rest_framework == 'y' %}
     'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
     'drf_yasg',
+    {%- endif %}
 ]
 LOCAL_APPS = [
     '{{ cookiecutter.project_slug }}.apps.users.apps.UsersAppConfig',
+    {%- if cookiecutter.use_rest_framework == 'y' %}
     '{{ cookiecutter.project_slug }}.apps.api.apps.ApiAppConfig',
+    {%- endif %}
 ]
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
@@ -62,7 +66,6 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 # ------------------------------------------------------------------------------
 AUTH_USER_MODEL = 'users.User'
 LOGIN_URL = '/accounts/signin/'
-
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
@@ -92,7 +95,9 @@ AUTH_PASSWORD_VALIDATORS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    {%- if cookiecutter.use_rest_framework == 'y' %}
     'corsheaders.middleware.CorsMiddleware',
+    {%- endif %}
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -143,7 +148,6 @@ TEMPLATES = [
         },
     },
 ]
-
 
 # EMAIL
 # ------------------------------------------------------------------------------
@@ -215,6 +219,7 @@ CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 
+{% if cookiecutter.use_rest_framework == 'y' -%}
 # DJANGO REST FRAMEWORK
 # ------------------------------------------------------------------------------
 REST_FRAMEWORK = {
@@ -240,6 +245,8 @@ SWAGGER_SETTINGS = {
 # DJANGO CORS HEADERS
 # ------------------------------------------------------------------------------
 CORS_ORIGIN_WHITELIST = env.list('DJANGO_CORS_ORIGIN_WHITELIST', default=[])
+
+{% endif -%}
 
 # APP SPECIFIC SETTINGS
 # ------------------------------------------------------------------------------
