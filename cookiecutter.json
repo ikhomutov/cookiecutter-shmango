@@ -16,5 +16,7 @@
         "none",
         "gitlab",
         "travis"
-    ]
+    ],
+    "initialize_git": "n",
+    "initialize_venv": "n"
 }
