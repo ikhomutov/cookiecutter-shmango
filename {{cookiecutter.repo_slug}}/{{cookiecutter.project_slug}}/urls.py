@@ -5,5 +5,7 @@ from django.urls import path
 
 urlpatterns = [
     path(settings.ADMIN_URL, admin.site.urls),
+    {%- if cookiecutter.use_rest_framework == 'y' %}
     path('api/', include('{{ cookiecutter.project_slug }}.apps.api.urls', namespace='api')),
+    {%- endif %}
 ]
