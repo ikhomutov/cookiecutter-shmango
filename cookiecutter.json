@@ -12,6 +12,7 @@
     ],
     "use_rest_framework": "y",
     "use_sentry": "y",
+    "use_docker": "y",
     "ci_tool": [
         "none",
         "gitlab",

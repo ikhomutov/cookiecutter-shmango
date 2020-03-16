@@ -19,6 +19,12 @@ def remove_functional_tests():
     shutil.rmtree(os.path.join("tests", "functional"))
 
 
+def remove_docker_files():
+    shutil.rmtree("docker")
+    os.remove("docker-compose.yaml")
+    os.remove("compose.env.example")
+
+
 def initialize_git():
     subprocess.call(['git', 'init'])
 
@@ -44,6 +50,9 @@ def main():
     if "{{ cookiecutter.use_rest_framework }}".lower() != "y":
         remove_drf_files()
         remove_functional_tests()
+
+    if "{{ cookiecutter.use_docker }}".lower() != "y":
+        remove_docker_files()
 
     if "{{ cookiecutter.initialize_git }}".lower() != "n":
         initialize_git()
