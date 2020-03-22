@@ -1,5 +1,5 @@
-import sentry_sdk
 {% if cookiecutter.use_sentry == 'y' -%}
+import sentry_sdk
 from sentry_sdk.integrations.celery import CeleryIntegration
 from sentry_sdk.integrations.django import DjangoIntegration
 from sentry_sdk.integrations.logging import LoggingIntegration
