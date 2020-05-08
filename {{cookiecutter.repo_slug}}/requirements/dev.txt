@@ -6,4 +6,4 @@ ipdb==0.11  # https://github.com/gotcha/ipdb
 
 flake8==3.7.5  # https://github.com/PyCQA/flake8
 isort==4.3.13  # https://github.com/timothycrosley/isort
-flake8-isort==2.7.0  # https://github.com/gforcada/flake8-isort
+flake8-isort==3.0.0  # https://github.com/gforcada/flake8-isort
