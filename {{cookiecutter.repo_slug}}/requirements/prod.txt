@@ -1,7 +1,7 @@
 -r ./base.txt
 
 {% if cookiecutter.cache_backend == 'redis' -%}
-django-redis==4.10.0  # https://github.com/niwinz/django-redis
+django-redis==4.11.0  # https://github.com/niwinz/django-redis
 {% elif cookiecutter.cache_backend == 'memcached' -%}
 python-memcached==1.59  # https://github.com/linsomniac/python-memcached
 {% endif -%}
