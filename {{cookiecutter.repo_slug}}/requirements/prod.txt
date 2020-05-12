@@ -3,9 +3,9 @@
 {% if cookiecutter.cache_backend == 'redis' -%}
 django-redis==4.10.0  # https://github.com/niwinz/django-redis
 {% elif cookiecutter.cache_backend == 'memcached' -%}
-python-memcached  # https://github.com/linsomniac/python-memcached
+python-memcached==1.59  # https://github.com/linsomniac/python-memcached
 {% endif -%}
-gunicorn==19.9.0  # https://github.com/benoitc/gunicorn
+gunicorn==20.0.4  # https://github.com/benoitc/gunicorn
 {% if cookiecutter.use_sentry == 'y' -%}
-sentry-sdk==0.13.0  # https://github.com/getsentry/sentry-python
+sentry-sdk==0.14.3  # https://github.com/getsentry/sentry-python
 {% endif -%}
