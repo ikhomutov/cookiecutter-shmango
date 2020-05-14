@@ -5,19 +5,22 @@
     "author_name": "Ivan Khomutov",
     "author_email": "ikhomutov@protonmail.com",
     "project_short_description": "A short description of the project",
+    "custom_user_model": "n",
     "cache_backend": [
+        "locmem",
         "redis",
         "memcached",
         "db"
     ],
-    "use_rest_framework": "y",
-    "use_sentry": "y",
-    "use_docker": "y",
+    "use_rest_framework": "n",
+    "use_sentry": "n",
+    "use_docker": "n",
     "ci_tool": [
         "none",
         "gitlab",
         "travis"
     ],
+    "heroku_deploy": "n",
     "initialize_git": "n",
     "initialize_venv": "n"
 }

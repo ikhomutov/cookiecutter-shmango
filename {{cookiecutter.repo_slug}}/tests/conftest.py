@@ -4,17 +4,31 @@ import pytest
 @pytest.fixture()
 def existed_user(db, django_user_model):
     User = django_user_model
+    {%- if cookiecutter.custom_user_model == "n" %}
+    username = 'test_user'
+    {%- endif %}
+    email = 'test@email.com'
+    password = 'password'
     try:
-        user = User.objects.get(email='test@email.com')
-        user.set_password('password')
+        user = User.objects.get(
+            {%- if cookiecutter.custom_user_model == "n" -%}
+            username=username
+            {%- else -%}
+            email=email
+            {%- endif -%}
+        )
+        user.set_password(password)
         user.save()
     except User.DoesNotExist:
         user = User.objects.create_user(
-            email='test@email.com',
-            password='password',
+            {%- if cookiecutter.custom_user_model == "n" %}
+            username=username,
+            {%- endif %}
+            email=email,
+            password=password,
         )
     return user
-{% if cookiecutter.use_rest_framework == 'y' %}
+{% if cookiecutter.use_rest_framework != 'n' %}
 
 @pytest.fixture()
 def api_client():

@@ -3,7 +3,10 @@ from datetime import timedelta
 
 from celery import Celery
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', '{{ cookiecutter.project_slug }}.settings.dev')
+os.environ.setdefault(
+    'DJANGO_SETTINGS_MODULE',
+    '{{ cookiecutter.project_slug }}.settings.dev'
+)
 
 app = Celery('{{ cookiecutter.project_slug }}')
 

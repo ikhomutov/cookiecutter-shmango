@@ -1,7 +1,12 @@
 stages:
   - linters
   - tests
+{%- if cookiecutter.use_docker != "n" %}
   - build
+{%- endif %}
+{%- if cookiecutter.heroku_deploy != "n" %}
+  - deploy
+{%- endif %}
 
 variables:
   POSTGRES_USER: '{{ cookiecutter.project_slug }}'
@@ -33,6 +38,7 @@ pytest:
 
   script:
     - pytest --cov {{ cookiecutter.project_slug }}/apps/
+{%- if cookiecutter.use_docker != "n" %}
 
 .build-docker-image:
   stage: build
@@ -59,3 +65,15 @@ build-docker-release:
     IMAGE_TAG: $CI_COMMIT_TAG
   only:
     - tags
+{%- endif %}
+{%- if cookiecutter.heroku_deploy != "n" %}
+
+heroku-deploy:
+  stage: deploy
+  image: 'tmaier/dpl'
+  script:
+    - dpl --provider=heroku --app={{ cookiecutter.project_slug }} --api-key=$HEROKU_API_KEY
+  when: manual
+  only:
+    - master
+{%- endif %}

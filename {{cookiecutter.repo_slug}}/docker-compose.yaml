@@ -18,7 +18,7 @@ services:
       - memcached
 {%- endif %}
     env_file:
-      - compose.env.example
+      - compose.env
 
   worker:
     build:
@@ -32,7 +32,7 @@ services:
       - memcached
 {%- endif %}
     env_file:
-      - compose.env.example
+      - compose.env
 
   beat:
     build:
@@ -46,7 +46,7 @@ services:
       - memcached
 {%- endif %}
     env_file:
-      - compose.env.example
+      - compose.env
 
   postgres:
     image: postgres:11-alpine

@@ -12,17 +12,31 @@ def remove_gitlabci_file():
 
 
 def remove_drf_files():
-    shutil.rmtree(os.path.join("{{ cookiecutter.project_slug }}", "apps", "api"))
+    shutil.rmtree(
+        os.path.join("{{ cookiecutter.project_slug }}", "apps", "api")
+    )
 
 
-def remove_functional_tests():
-    shutil.rmtree(os.path.join("tests", "functional"))
+def remove_custom_user_app():
+    shutil.rmtree(
+        os.path.join("{{ cookiecutter.project_slug }}", "apps", "users")
+    )
+
+
+def remove_custom_user_tests():
+    shutil.rmtree(os.path.join("tests", "unit", "user"))
 
 
 def remove_docker_files():
     shutil.rmtree("docker")
     os.remove("docker-compose.yaml")
     os.remove("compose.env.example")
+
+
+def remove_heroku_files():
+    os.remove("Procfile")
+    os.remove("runtime.txt")
+    os.remove("requirements.txt")
 
 
 def initialize_git():
@@ -47,12 +61,18 @@ def main():
     if "{{ cookiecutter.ci_tool }}".lower() != "gitlab":
         remove_gitlabci_file()
 
-    if "{{ cookiecutter.use_rest_framework }}".lower() != "y":
+    if "{{ cookiecutter.use_rest_framework }}".lower() == "n":
         remove_drf_files()
-        remove_functional_tests()
 
-    if "{{ cookiecutter.use_docker }}".lower() != "y":
+    if "{{ cookiecutter.custom_user_model }}".lower() == "n":
+        remove_custom_user_app()
+        remove_custom_user_tests()
+
+    if "{{ cookiecutter.use_docker }}".lower() == "n":
         remove_docker_files()
+
+    if "{{ cookiecutter.heroku_deploy }}".lower() == "n":
+        remove_heroku_files()
 
     if "{{ cookiecutter.initialize_git }}".lower() != "n":
         initialize_git()

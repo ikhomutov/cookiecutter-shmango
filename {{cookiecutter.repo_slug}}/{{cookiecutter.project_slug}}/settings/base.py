@@ -47,15 +47,17 @@ DJANGO_APPS = [
     'django.contrib.admin',
 ]
 THIRD_PARTY_APPS = [
-    {%- if cookiecutter.use_rest_framework == 'y' %}
+    {%- if cookiecutter.use_rest_framework != 'n' %}
     'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
     {%- endif %}
 ]
 LOCAL_APPS = [
+    {%- if cookiecutter.custom_user_model != 'n' %}
     '{{ cookiecutter.project_slug }}.apps.users.apps.UsersAppConfig',
-    {%- if cookiecutter.use_rest_framework == 'y' %}
+    {%- endif %}
+    {%- if cookiecutter.use_rest_framework != 'n' %}
     '{{ cookiecutter.project_slug }}.apps.api.apps.ApiAppConfig',
     {%- endif %}
 ]
@@ -63,7 +65,9 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 # AUTHENTICATION
 # ------------------------------------------------------------------------------
+{%- if cookiecutter.custom_user_model != 'n' %}
 AUTH_USER_MODEL = 'users.User'
+{%- endif %}
 LOGIN_URL = '/accounts/signin/'
 
 AUTHENTICATION_BACKENDS = [
@@ -94,7 +98,7 @@ AUTH_PASSWORD_VALIDATORS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    {%- if cookiecutter.use_rest_framework == 'y' %}
+    {%- if cookiecutter.use_rest_framework != 'n' %}
     'corsheaders.middleware.CorsMiddleware',
     {%- endif %}
     'django.middleware.common.CommonMiddleware',
@@ -218,7 +222,7 @@ CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 
-{% if cookiecutter.use_rest_framework == 'y' -%}
+{% if cookiecutter.use_rest_framework != 'n' -%}
 # DJANGO REST FRAMEWORK
 # ------------------------------------------------------------------------------
 REST_FRAMEWORK = {
