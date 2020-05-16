@@ -33,6 +33,10 @@ def remove_docker_files():
     os.remove("compose.env.example")
 
 
+def remove_celery_files():
+    os.remove(os.path.join("{{ cookiecutter.project_slug }}", "celery.py"))
+
+
 def remove_heroku_files():
     os.remove("Procfile")
     os.remove("runtime.txt")
@@ -70,6 +74,9 @@ def main():
 
     if "{{ cookiecutter.use_docker }}".lower() == "n":
         remove_docker_files()
+
+    if "{{ cookiecutter.use_celery }}".lower() == "n":
+        remove_celery_files()
 
     if "{{ cookiecutter.heroku_deploy }}".lower() == "n":
         remove_heroku_files()

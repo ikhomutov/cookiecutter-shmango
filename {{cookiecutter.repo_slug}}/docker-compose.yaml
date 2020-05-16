@@ -20,6 +20,7 @@ services:
     env_file:
       - compose.env
 
+{% if cookiecutter.use_celery != 'n' -%}
   worker:
     build:
       context: .
@@ -47,6 +48,8 @@ services:
 {%- endif %}
     env_file:
       - compose.env
+
+{% endif -%}
 
   postgres:
     image: postgres:11-alpine

@@ -15,6 +15,7 @@
     "use_rest_framework": "n",
     "use_sentry": "n",
     "use_docker": "n",
+    "use_celery": "n",
     "ci_tool": [
         "none",
         "gitlab",

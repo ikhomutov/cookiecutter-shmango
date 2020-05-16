@@ -55,10 +55,10 @@ THIRD_PARTY_APPS = [
 ]
 LOCAL_APPS = [
     {%- if cookiecutter.custom_user_model != 'n' %}
-    '{{ cookiecutter.project_slug }}.apps.users.apps.UsersAppConfig',
+    '{{ cookiecutter.project_slug }}.apps.users.apps.UsersConfig',
     {%- endif %}
     {%- if cookiecutter.use_rest_framework != 'n' %}
-    '{{ cookiecutter.project_slug }}.apps.api.apps.ApiAppConfig',
+    '{{ cookiecutter.project_slug }}.apps.api.apps.ApiConfig',
     {%- endif %}
 ]
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -214,6 +214,7 @@ LOGGING = {
     }
 }
 
+{% if cookiecutter.use_celery != 'n' -%}
 # CELERY
 # ------------------------------------------------------------------------------
 CELERY_BROKER_URL = env.str('CELERY_BROKER_URL', default='')
@@ -222,6 +223,7 @@ CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 
+{% endif -%}
 {% if cookiecutter.use_rest_framework != 'n' -%}
 # DJANGO REST FRAMEWORK
 # ------------------------------------------------------------------------------
