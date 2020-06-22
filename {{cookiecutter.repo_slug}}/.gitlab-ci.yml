@@ -10,7 +10,7 @@ stages:
 
 variables:
   POSTGRES_USER: '{{ cookiecutter.project_slug }}'
-  POSTGRES_PASSWORD: ''
+  POSTGRES_PASSWORD: '{{ cookiecutter.project_slug }}'
   POSTGRES_DB: 'test_{{ cookiecutter.project_slug }}'
 
 flake8:
