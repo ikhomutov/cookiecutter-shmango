@@ -58,10 +58,6 @@ TEMPLATES[0]['OPTIONS']['loaders'] = [  # noqa F405
         ]
     ),
 ]
-
-# GUNICORN
-# ------------------------------------------------------------------------------
-INSTALLED_APPS += ['gunicorn']  # noqa F405
 {%- if cookiecutter.use_sentry == 'y' %}
 
 # SENTRY
