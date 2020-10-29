@@ -1,7 +1,7 @@
 -r ./base.txt
 -r ./test.txt
 
-pre-commit==2.7.1  # https://github.com/pre-commit/pre-commit
+pre-commit==2.8.0  # https://github.com/pre-commit/pre-commit
 ipdb==0.13.3  # https://github.com/gotcha/ipdb
 
 flake8==3.8.3  # https://github.com/PyCQA/flake8
